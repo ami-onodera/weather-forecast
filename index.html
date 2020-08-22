@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/48fbdddd94.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="src/styles.css" />
+
+    <title>Weather Forecast</title>
+  </head>
+  <body>
+    <div class="outer-container">
+      <div class="row">
+        <div class="col-7 left-side">
+          <div class="container-left">
+            <h3>São Paulo</h3>
+            <div class="icon-number">
+              <h1>🌧18°</h1>
+              <h5>Feels like 16°</h5>
+              <h3>Raining</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-5 right-side">
+          <div class="container-right">
+            <h3>Thursday 20:21</h3>
+            <div class="row">
+              <div class="col">
+                <div class="stats">
+                  <p id="big-emoji">💧</p>
+                  <p>90%</p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="stats">
+                  <p id="big-emoji">💨</p>
+                  <p>10km/h</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="search-bar">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search another city"
+                aria-label="search"
+                aria-describedby="button-addon2"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-secondary"
+                  type="button"
+                  id="button-addon2"
+                >
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container week-forecast">
+          <div class="row week-bg">
+            <div class="col-2 week">
+              <strong>Fri</strong>
+              <p id="big-emoji">🌤</p>
+              <p>25°</p>
+            </div>
+            <div class="col-2 week">
+              <strong>Sat</strong>
+              <p id="big-emoji">🌥</p>
+              <p>19°</p>
+            </div>
+            <div class="col-2 week">
+              <strong>Sun</strong>
+              <p id="big-emoji">🌤</p>
+              <p>22°</p>
+            </div>
+            <div class="col-2 week">
+              <strong>Mon</strong>
+              <p id="big-emoji">🌦</p>
+              <p>15°</p>
+            </div>
+            <div class="col-2 week">
+              <strong>Tue</strong>
+              <p id="big-emoji">🌦</p>
+              <p>20°</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+h1 {
+  font-size: 70px;
+}
+
+.outer-container {
+  max-width: 900px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10%;
+  box-shadow: -1px 0px 9px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  background-color: #f0f0fa;
+  background-image: url("/img/rain.png");
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: contain, cover;
+}
+
+.left-side {
+  padding: 30px 50px;
+  margin: 0 auto;
+}
+
+.right-side {
+  padding: 30px 50px;
+  margin: 0 auto;
+}
+
+.container-left {
+  text-align: left;
+  padding: 25px;
+  color: #8b87b8;
+  margin-left: 30px;
+  /* background-color: rgb(255 255 255 / 0.26);
+  border-radius: 20px; */
+}
+
+.container-right {
+  text-align: center;
+  padding: 25px;
+  color: #8b87b8;
+  /* background-color: rgb(255 255 255 / 0.26);
+  border-radius: 20px; */
+}
+
+.week-forecast {
+  color: #353160;
+  text-align: center;
+  line-height: 45px;
+}
+
+.week {
+  display: block;
+  margin: 0 auto;
+  background-color: rgb(255 255 255 / 0.26);
+  border-radius: 20px;
+}
+
+.week p {
+  line-height: 35px;
+}
+
+.week-bg {
+  margin: 30px;
+}
+
+.search-bar {
+  width: 60%;
+  margin-left: 20%;
+}
+
+#big-emoji {
+  font-size: 50px;
+  margin: 0px;
+}
+
+.stats {
+  margin-top: 10px;
+  line-height: 40px;
+  font-size: 20px;
+}
