@@ -23,17 +23,23 @@
       <div class="row">
         <div class="col-7 left-side">
           <div class="container-left">
-            <h3>São Paulo</h3>
-            <div class="icon-number">
-              <h1>🌧18°</h1>
-              <h5>Feels like 16°</h5>
-              <h3>Raining</h3>
+            <h3 id="current-city">São Paulo</h3>
+            <div class="celsius-fahrenheit">
+              <h1>
+                <span id="temp-emoji">🌧</span> <span id="temp-number">18</span>
+              </h1>
+              <p>
+                <a href="#" id="celsius-link">°C</a> |
+                <a href="#" id="fahrenheit-link">°F</a>
+              </p>
             </div>
+            <h5>Feels like 16°</h5>
+            <h3>Raining</h3>
           </div>
         </div>
         <div class="col-5 right-side">
           <div class="container-right">
-            <h3>Thursday 20:21</h3>
+            <h3 id="current-date">Dia e hora</h3>
             <div class="row">
               <div class="col">
                 <div class="stats">
@@ -52,26 +58,29 @@
         </div>
 
         <div class="container">
-          <div class="search-bar">
-            <div class="input-group mb-3">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Search another city"
-                aria-label="search"
-                aria-describedby="button-addon2"
-              />
-              <div class="input-group-append">
-                <button
-                  class="btn btn-secondary"
-                  type="button"
-                  id="button-addon2"
-                >
-                  <i class="fas fa-search"></i>
-                </button>
+          <form id="search-form">
+            <div class="search-bar">
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search another city"
+                  aria-label="search"
+                  aria-describedby="button-addon2"
+                  id="search-bar"
+                />
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-secondary"
+                    type="submit"
+                    id="button-addon2"
+                  >
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
 
         <div class="container week-forecast">

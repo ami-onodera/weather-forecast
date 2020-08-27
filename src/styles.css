@@ -79,3 +79,18 @@ h1 {
   line-height: 40px;
   font-size: 20px;
 }
+
+.celsius-fahrenheit h1 {
+  display: inline;
+}
+
+.celsius-fahrenheit p {
+  display: inline;
+  position: relative;
+  top: -35px;
+}
+
+.celsius-fahrenheit a {
+  text-decoration: none;
+  color: #008ce2;
+}
