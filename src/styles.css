@@ -69,11 +69,14 @@ h1 {
   margin-left: 20%;
 }
 
-#current-city-button {
+.current-city-button {
   margin-left: 20%;
   margin-bottom: 5px;
   background-color: #8b87b8;
+  padding: 5px 15px;
   border: none;
+  border-radius: 5px;
+  color: white;
 }
 
 #big-emoji {
@@ -83,7 +86,6 @@ h1 {
 
 #current-city {
   display: block;
-  margin-left: 20%;
 }
 
 .stats {
