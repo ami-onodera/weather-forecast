@@ -79,6 +79,10 @@ h1 {
   color: white;
 }
 
+.current-city-button:active {
+  border: none;
+}
+
 #big-emoji {
   font-size: 50px;
   margin: 0px;

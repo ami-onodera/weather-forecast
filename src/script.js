@@ -36,6 +36,15 @@ function retrievePosition(position) {
 
 navigator.geolocation.getCurrentPosition(retrievePosition);
 
+// Button to get current city
+
+function geoCurrent(event) {
+  navigator.geolocation.getCurrentPosition(retrievePosition);
+}
+
+let getCurrentCity = document.querySelector("#current-city-button");
+getCurrentCity.addEventListener("click", geoCurrent);
+
 // Display city that was searched
 
 function searchCity(event) {
@@ -49,9 +58,6 @@ function searchCity(event) {
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchCity);
-
-// let getCurrentCity = document.querySelector("#current-city-button");
-// getCurrentCity.addEventListener("click", retrievePosition);
 
 // integrate API
 
