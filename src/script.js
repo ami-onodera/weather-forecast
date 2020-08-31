@@ -60,9 +60,9 @@ function showWeather(response) {
   let description = response.data.weather[0].description;
   weatherDescription.innerHTML = `${description}`;
 
-  let currentEmoji = document.querySelector("#temp-emoji");
+  // adjust big emoji
 
-  console.log(weatherDescription.innerText);
+  let currentEmoji = document.querySelector("#temp-emoji");
 
   if (weatherDescription.innerText === "clear sky") {
     currentEmoji.innerHTML = `☀️`;
@@ -76,6 +76,8 @@ function showWeather(response) {
     currentEmoji.innerHTML = `🌧`;
   } else if (weatherDescription.innerText === "rain") {
     currentEmoji.innerHTML = `⛈`;
+  } else if (weatherDescription.innerText === "light rain") {
+    currentEmoji.innerHTML = `🌧`;
   } else if (weatherDescription.innerText === "thunderstorm") {
     currentEmoji.innerHTML = `🌩`;
   } else if (weatherDescription.innerText === "snow") {
@@ -103,5 +105,3 @@ function showCurrent(response) {
 
   axios.get(apiUrl).then(showWeather);
 }
-
-// Adjust big emoji
