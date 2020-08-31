@@ -24,6 +24,18 @@ if (minutesNow < 10) {
 let showDate = document.querySelector("#current-date");
 showDate.innerHTML = `${weekDay} ${hourNow}:${minutesNow}`;
 
+// Get current info by default
+
+function retrievePosition(position) {
+  const apiKey = "e58056dbe2936b35eaec505d63e7a608";
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}&units=metric`;
+  axios.get(url).then(showWeather);
+}
+
+navigator.geolocation.getCurrentPosition(retrievePosition);
+
 // Display city that was searched
 
 function searchCity(event) {
@@ -38,12 +50,18 @@ function searchCity(event) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchCity);
 
+// let getCurrentCity = document.querySelector("#current-city-button");
+// getCurrentCity.addEventListener("click", retrievePosition);
+
 // integrate API
 
 function showWeather(response) {
   let showTempCelsius = document.querySelector("#temp-number");
   let temperatureInCelsius = Math.round(response.data.main.temp);
   showTempCelsius.innerHTML = `${temperatureInCelsius}`;
+
+  let setCurrentCityAuto = document.querySelector("#current-city");
+  setCurrentCityAuto.innerHTML = `${response.data.name}`;
 
   let feelsLike = document.querySelector("#feels-like");
   let sensation = Math.round(response.data.main.feels_like);
@@ -133,5 +151,3 @@ function toFahrenheit(temperatureInCelsius) {
   let tempInFahrenheit = document.querySelector("#fahrenheit-link");
   tempInFahrenheit.addEventListener("click", tempFahrenheit);
 }
-
-// Current
