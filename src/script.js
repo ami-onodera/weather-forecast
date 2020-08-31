@@ -57,7 +57,38 @@ function showWeather(response) {
   showWindSpeed.innerHTML = `${windSpeed} km/h`;
 
   let weatherDescription = document.querySelector("#weather-description");
-  weatherDescription.innerHTML = response.data.weather[0].description;
+  let description = response.data.weather[0].description;
+  weatherDescription.innerHTML = `${description}`;
+
+  let currentEmoji = document.querySelector("#temp-emoji");
+
+  console.log(weatherDescription.innerText);
+
+  if (weatherDescription.innerText === "clear sky") {
+    currentEmoji.innerHTML = `☀️`;
+  } else if (weatherDescription.innerText === "few clouds") {
+    currentEmoji.innerHTML = `🌤`;
+  } else if (weatherDescription.innerText === "scattered clouds") {
+    currentEmoji.innerHTML = `🌥`;
+  } else if (weatherDescription.innerText === "broken clouds") {
+    currentEmoji.innerHTML = `☁️`;
+  } else if (weatherDescription.innerText === "shower rain") {
+    currentEmoji.innerHTML = `🌧`;
+  } else if (weatherDescription.innerText === "rain") {
+    currentEmoji.innerHTML = `⛈`;
+  } else if (weatherDescription.innerText === "thunderstorm") {
+    currentEmoji.innerHTML = `🌩`;
+  } else if (weatherDescription.innerText === "snow") {
+    currentEmoji.innerHTML = `❄️`;
+  } else if (weatherDescription.innerText === "mist") {
+    currentEmoji.innerHTML = `🌫`;
+  } else if (weatherDescription.innerText === "haze") {
+    currentEmoji.innerHTML = `🌨`;
+  } else if (weatherDescription.innerText === "tornado") {
+    currentEmoji.innerHTML = `🌪`;
+  } else {
+    currentEmoji.innerHTML = `🌈`;
+  }
 }
 
 function showCurrent(response) {
@@ -72,3 +103,5 @@ function showCurrent(response) {
 
   axios.get(apiUrl).then(showWeather);
 }
+
+// Adjust big emoji
