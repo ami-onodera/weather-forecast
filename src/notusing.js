@@ -41,3 +41,26 @@ function temperature() {
 }
 
 temperature();
+
+// Show Celsius or Fahrenheit temperatures
+
+let temperatureInCelsius = 18;
+
+function tempCelsius(event) {
+  event.preventDefault();
+  let showTempCelsius = document.querySelector("#temp-number");
+  showTempCelsius.innerHTML = temperatureInCelsius;
+}
+
+let tempInCelsius = document.querySelector("#celsius-link");
+tempInCelsius.addEventListener("click", tempCelsius);
+
+function tempFahrenheit(event) {
+  event.preventDefault();
+  let temperatureInFahrenheit = (temperatureInCelsius * 9) / 5 + 32;
+  let showTempFahrenheit = document.querySelector("#temp-number");
+  showTempFahrenheit.innerHTML = temperatureInFahrenheit;
+}
+
+let tempInFahrenheit = document.querySelector("#fahrenheit-link");
+tempInFahrenheit.addEventListener("click", tempFahrenheit);
