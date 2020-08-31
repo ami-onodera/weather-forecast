@@ -133,3 +133,5 @@ function toFahrenheit(temperatureInCelsius) {
   let tempInFahrenheit = document.querySelector("#fahrenheit-link");
   tempInFahrenheit.addEventListener("click", tempFahrenheit);
 }
+
+// Current
