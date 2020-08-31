@@ -31,30 +31,30 @@ function searchCity(event) {
   let searchInput = document.querySelector("#search-bar");
   let currentCity = document.querySelector("#current-city");
   currentCity.innerHTML = ` ${searchInput.value}`;
+
+  showCurrent();
 }
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchCity);
 
-// Show Celsius or Fahrenheit temperatures
+// integrate API
 
-let temperatureInCelsius = 18;
-
-function tempCelsius(event) {
-  event.preventDefault();
+function showWeather(response) {
   let showTempCelsius = document.querySelector("#temp-number");
-  showTempCelsius.innerHTML = temperatureInCelsius;
+  showTempCelsius.innerHTML = Math.round(response.data.main.temp);
+  console.log(Math.round(response.data.main.temp));
 }
 
-let tempInCelsius = document.querySelector("#celsius-link");
-tempInCelsius.addEventListener("click", tempCelsius);
+function showCurrent(response) {
+  const apiKey = "e58056dbe2936b35eaec505d63e7a608";
+  let searchInput = document.querySelector("#search-bar");
+  let currentCity = document.querySelector("#current-city");
+  currentCity.innerHTML = `${searchInput.value}`;
+  let searchedCity = currentCity.innerText;
 
-function tempFahrenheit(event) {
-  event.preventDefault();
-  let temperatureInFahrenheit = (temperatureInCelsius * 9) / 5 + 32;
-  let showTempFahrenheit = document.querySelector("#temp-number");
-  showTempFahrenheit.innerHTML = temperatureInFahrenheit;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+
+  axios.get(apiUrl).then(showWeather);
 }
-
-let tempInFahrenheit = document.querySelector("#fahrenheit-link");
-tempInFahrenheit.addEventListener("click", tempFahrenheit);
