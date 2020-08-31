@@ -43,7 +43,21 @@ searchForm.addEventListener("submit", searchCity);
 function showWeather(response) {
   let showTempCelsius = document.querySelector("#temp-number");
   showTempCelsius.innerHTML = Math.round(response.data.main.temp);
-  console.log(Math.round(response.data.main.temp));
+
+  let feelsLike = document.querySelector("#feels-like");
+  let sensation = Math.round(response.data.main.feels_like);
+  feelsLike.innerHTML = `Feels like ${sensation}°C`;
+
+  let showHumidity = document.querySelector("#humidity");
+  let humidity = Math.round(response.data.main.humidity);
+  showHumidity.innerHTML = `${humidity}%`;
+
+  let showWindSpeed = document.querySelector("#windspeed");
+  let windSpeed = Math.round(response.data.wind.speed);
+  showWindSpeed.innerHTML = `${windSpeed} km/h`;
+
+  let weatherDescription = document.querySelector("#weather-description");
+  weatherDescription.innerHTML = response.data.weather[0].description;
 }
 
 function showCurrent(response) {
