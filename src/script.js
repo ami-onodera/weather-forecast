@@ -42,7 +42,8 @@ searchForm.addEventListener("submit", searchCity);
 
 function showWeather(response) {
   let showTempCelsius = document.querySelector("#temp-number");
-  showTempCelsius.innerHTML = Math.round(response.data.main.temp);
+  let temperatureInCelsius = Math.round(response.data.main.temp);
+  showTempCelsius.innerHTML = `${temperatureInCelsius}`;
 
   let feelsLike = document.querySelector("#feels-like");
   let sensation = Math.round(response.data.main.feels_like);
@@ -91,6 +92,10 @@ function showWeather(response) {
   } else {
     currentEmoji.innerHTML = `🌈`;
   }
+
+  // Celsius to Fahrenheit
+
+  toFahrenheit(temperatureInCelsius);
 }
 
 function showCurrent(response) {
@@ -104,4 +109,27 @@ function showCurrent(response) {
   console.log(apiUrl);
 
   axios.get(apiUrl).then(showWeather);
+}
+
+// Celsius to Fahrenheit
+
+function toFahrenheit(temperatureInCelsius) {
+  function tempCelsius(event) {
+    event.preventDefault();
+    let showTempCelsius = document.querySelector("#temp-number");
+    showTempCelsius.innerHTML = temperatureInCelsius;
+  }
+
+  let tempInCelsius = document.querySelector("#celsius-link");
+  tempInCelsius.addEventListener("click", tempCelsius);
+
+  function tempFahrenheit(event) {
+    event.preventDefault();
+    let temperatureInFahrenheit = (temperatureInCelsius * 9) / 5 + 32;
+    let showTempFahrenheit = document.querySelector("#temp-number");
+    showTempFahrenheit.innerHTML = temperatureInFahrenheit;
+  }
+
+  let tempInFahrenheit = document.querySelector("#fahrenheit-link");
+  tempInFahrenheit.addEventListener("click", tempFahrenheit);
 }
