@@ -12,7 +12,8 @@ h1 {
   background-color: #f0f0fa;
   /* background-image: url("/img/rain.png"); */
   background-repeat: no-repeat;
-  background-position: right top;
+  /* background-position: right top; */
+  background-position: center;
   background-size: contain, cover;
 }
 
