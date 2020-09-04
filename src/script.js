@@ -87,35 +87,57 @@ function showWeather(response) {
 
   // adjust big emoji
 
+  // let currentEmoji = document.querySelector("#temp-emoji");
+
+  // if (weatherDescription.innerText === "clear sky") {
+  //   currentEmoji.innerHTML = `☀️`;
+  // } else if (weatherDescription.innerText === "few clouds") {
+  //   currentEmoji.innerHTML = `🌤`;
+  // } else if (weatherDescription.innerText === "scattered clouds") {
+  //   currentEmoji.innerHTML = `🌥`;
+  // } else if (weatherDescription.innerText === "broken clouds") {
+  //   currentEmoji.innerHTML = `☁️`;
+  // } else if (weatherDescription.innerText === "shower rain") {
+  //   currentEmoji.innerHTML = `🌧`;
+  // } else if (weatherDescription.innerText === "rain") {
+  //   currentEmoji.innerHTML = `⛈`;
+  // } else if (weatherDescription.innerText === "light rain") {
+  //   currentEmoji.innerHTML = `🌧`;
+  // } else if (weatherDescription.innerText === "thunderstorm") {
+  //   currentEmoji.innerHTML = `🌩`;
+  // } else if (weatherDescription.innerText === "snow") {
+  //   currentEmoji.innerHTML = `❄️`;
+  // } else if (weatherDescription.innerText === "mist") {
+  //   currentEmoji.innerHTML = `🌫`;
+  // } else if (weatherDescription.innerText === "haze") {
+  //   currentEmoji.innerHTML = `🌨`;
+  // } else if (weatherDescription.innerText === "tornado") {
+  //   currentEmoji.innerHTML = `🌪`;
+  // } else {
+  //   currentEmoji.innerHTML = `🌈`;
+  // }
+
   let currentEmoji = document.querySelector("#temp-emoji");
 
-  if (weatherDescription.innerText === "clear sky") {
-    currentEmoji.innerHTML = `☀️`;
-  } else if (weatherDescription.innerText === "few clouds") {
-    currentEmoji.innerHTML = `🌤`;
-  } else if (weatherDescription.innerText === "scattered clouds") {
-    currentEmoji.innerHTML = `🌥`;
-  } else if (weatherDescription.innerText === "broken clouds") {
-    currentEmoji.innerHTML = `☁️`;
-  } else if (weatherDescription.innerText === "shower rain") {
-    currentEmoji.innerHTML = `🌧`;
-  } else if (weatherDescription.innerText === "rain") {
-    currentEmoji.innerHTML = `⛈`;
-  } else if (weatherDescription.innerText === "light rain") {
-    currentEmoji.innerHTML = `🌧`;
-  } else if (weatherDescription.innerText === "thunderstorm") {
-    currentEmoji.innerHTML = `🌩`;
-  } else if (weatherDescription.innerText === "snow") {
-    currentEmoji.innerHTML = `❄️`;
-  } else if (weatherDescription.innerText === "mist") {
-    currentEmoji.innerHTML = `🌫`;
-  } else if (weatherDescription.innerText === "haze") {
-    currentEmoji.innerHTML = `🌨`;
-  } else if (weatherDescription.innerText === "tornado") {
-    currentEmoji.innerHTML = `🌪`;
-  } else {
-    currentEmoji.innerHTML = `🌈`;
-  }
+  const temperatureEmoji = {
+    "clear sky": "☀️",
+    "few clouds": "🌤",
+    "scattered clouds": "🌥",
+    "broken clouds": "☁️",
+    "shower rain": "🌧",
+    rain: "⛈",
+    "light rain": "🌧",
+    thunderstorm: "🌩",
+    snow: "❄️",
+    mist: "🌫",
+    haze: "🌨",
+    tornado: "🌪",
+    fog: "🌫",
+  };
+  const fallbackEmoji = "🌈";
+
+  currentEmoji.innerHTML =
+    temperatureEmoji[weatherDescription.innerText] || fallbackEmoji;
 
   // set background
 
@@ -144,22 +166,47 @@ function showWeather(response) {
   } else if (weatherDescription.innerText === "shower rain") {
     currentBackground.setAttribute(
       "style",
-      "background-image: url(img/rain.svg)"
+      "background-image: url(img/rain.png)"
     );
   } else if (weatherDescription.innerText === "rain") {
     currentBackground.setAttribute(
       "style",
-      "background-image: url(img/rain.svg)"
+      "background-image: url(img/rain.png)"
     );
   } else if (weatherDescription.innerText === "light rain") {
     currentBackground.setAttribute(
       "style",
-      "background-image: url(img/rain2.svg)"
+      "background-image: url(img/rain2.png)"
     );
   } else if (weatherDescription.innerText === "thunderstorm") {
     currentBackground.setAttribute(
       "style",
-      "background-image: url(img/rain2.svg)"
+      "background-image: url(img/rain2.png)"
+    );
+  } else if (weatherDescription.innerText === "snow") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/snow.svg)"
+    );
+  } else if (weatherDescription.innerText === "mist") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/wind2.svg)"
+    );
+  } else if (weatherDescription.innerText === "haze") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/alt1.svg)"
+    );
+  } else if (weatherDescription.innerText === "fog") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/wind2.svg)"
+    );
+  } else {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/else2.svg)"
     );
   }
 
