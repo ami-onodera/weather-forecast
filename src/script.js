@@ -117,6 +117,52 @@ function showWeather(response) {
     currentEmoji.innerHTML = `🌈`;
   }
 
+  // set background
+
+  let currentBackground = document.getElementById("background-image");
+
+  if (weatherDescription.innerText === "clear sky") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/clear-sky.svg)"
+    );
+  } else if (weatherDescription.innerText === "few clouds") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/windy.svg)"
+    );
+  } else if (weatherDescription.innerText === "scattered clouds") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/windy.svg)"
+    );
+  } else if (weatherDescription.innerText === "broken clouds") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/clouds.svg)"
+    );
+  } else if (weatherDescription.innerText === "shower rain") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/rain.svg)"
+    );
+  } else if (weatherDescription.innerText === "rain") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/rain.svg)"
+    );
+  } else if (weatherDescription.innerText === "light rain") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/rain2.svg)"
+    );
+  } else if (weatherDescription.innerText === "thunderstorm") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/rain2.svg)"
+    );
+  }
+
   // Celsius to Fahrenheit
 
   toFahrenheit(temperatureInCelsius);
