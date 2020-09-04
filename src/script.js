@@ -124,6 +124,7 @@ function showWeather(response) {
     "few clouds": "🌤",
     "scattered clouds": "🌥",
     "broken clouds": "☁️",
+    "overcast clouds": "☁️",
     "shower rain": "🌧",
     rain: "⛈",
     "light rain": "🌧",
@@ -161,7 +162,7 @@ function showWeather(response) {
   } else if (weatherDescription.innerText === "broken clouds") {
     currentBackground.setAttribute(
       "style",
-      "background-image: url(img/clouds.svg)"
+      "background-image: url(img/cloudy.png)"
     );
   } else if (weatherDescription.innerText === "shower rain") {
     currentBackground.setAttribute(
@@ -202,6 +203,11 @@ function showWeather(response) {
     currentBackground.setAttribute(
       "style",
       "background-image: url(img/wind2.svg)"
+    );
+  } else if (weatherDescription.innerText === "overcast clouds") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/cloudy.png)"
     );
   } else {
     currentBackground.setAttribute(
