@@ -51,24 +51,24 @@ h1 {
   -webkit-text-stroke: 1px #8b87b8;
 }
 
-.week-forecast {
+.hourly-forecast {
   color: #353160;
   text-align: center;
   line-height: 45px;
 }
 
-.week {
+.hour {
   display: block;
   margin: 0 auto;
   background-color: rgb(255 255 255 / 0.26);
   border-radius: 20px;
 }
 
-.week p {
+.hour p {
   line-height: 35px;
 }
 
-.week-bg {
+.hour-bg {
   margin: 30px;
 }
 
@@ -92,6 +92,11 @@ h1 {
 }
 
 #big-emoji {
+  font-size: 50px;
+  margin: 0px;
+}
+
+.small-emoji {
   font-size: 50px;
   margin: 0px;
 }

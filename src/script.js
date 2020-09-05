@@ -24,6 +24,24 @@ if (minutesNow < 10) {
 let showDate = document.querySelector("#current-date");
 showDate.innerHTML = `${weekDay} ${hourNow}:${minutesNow}`;
 
+// get hour for hourly forecast
+
+function formatHours(timestamp) {
+  let weekDay = days[now.getDay()];
+  let hourNow = now.getHours();
+
+  let minutesNow = now.getMinutes();
+
+  if (minutesNow < 10) {
+    minutesNow = "0" + minutesNow;
+  } else {
+    minutesNow = minutesNow + "";
+  }
+  // let showHour = document.querySelector("#hour");
+  // showHour.innerHTML = `${hourNow}:${minutesNow}`;
+  return `${hourNow}:${minutesNow}`;
+}
+
 // Get current info by default
 
 function retrievePosition(position) {
@@ -56,6 +74,28 @@ function searchCity(event) {
   showCurrent();
 }
 
+function getEmoji(temperature) {
+  const temperatureEmoji = {
+    "clear sky": "☀️",
+    "few clouds": "🌤",
+    "scattered clouds": "🌥",
+    "broken clouds": "☁️",
+    "overcast clouds": "☁️",
+    "shower rain": "🌧",
+    rain: "⛈",
+    "light rain": "🌧",
+    thunderstorm: "🌩",
+    snow: "❄️",
+    mist: "🌫",
+    haze: "🌨",
+    tornado: "🌪",
+    fog: "🌫",
+  };
+  const fallbackEmoji = "🌈";
+
+  return temperatureEmoji[temperature] || fallbackEmoji;
+}
+
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchCity);
 
@@ -85,38 +125,6 @@ function showWeather(response) {
   let description = response.data.weather[0].description;
   weatherDescription.innerHTML = `${description}`;
 
-  // adjust big emoji
-
-  // let currentEmoji = document.querySelector("#temp-emoji");
-
-  // if (weatherDescription.innerText === "clear sky") {
-  //   currentEmoji.innerHTML = `☀️`;
-  // } else if (weatherDescription.innerText === "few clouds") {
-  //   currentEmoji.innerHTML = `🌤`;
-  // } else if (weatherDescription.innerText === "scattered clouds") {
-  //   currentEmoji.innerHTML = `🌥`;
-  // } else if (weatherDescription.innerText === "broken clouds") {
-  //   currentEmoji.innerHTML = `☁️`;
-  // } else if (weatherDescription.innerText === "shower rain") {
-  //   currentEmoji.innerHTML = `🌧`;
-  // } else if (weatherDescription.innerText === "rain") {
-  //   currentEmoji.innerHTML = `⛈`;
-  // } else if (weatherDescription.innerText === "light rain") {
-  //   currentEmoji.innerHTML = `🌧`;
-  // } else if (weatherDescription.innerText === "thunderstorm") {
-  //   currentEmoji.innerHTML = `🌩`;
-  // } else if (weatherDescription.innerText === "snow") {
-  //   currentEmoji.innerHTML = `❄️`;
-  // } else if (weatherDescription.innerText === "mist") {
-  //   currentEmoji.innerHTML = `🌫`;
-  // } else if (weatherDescription.innerText === "haze") {
-  //   currentEmoji.innerHTML = `🌨`;
-  // } else if (weatherDescription.innerText === "tornado") {
-  //   currentEmoji.innerHTML = `🌪`;
-  // } else {
-  //   currentEmoji.innerHTML = `🌈`;
-  // }
-
   let currentEmoji = document.querySelector("#temp-emoji");
 
   const temperatureEmoji = {
@@ -137,8 +145,7 @@ function showWeather(response) {
   };
   const fallbackEmoji = "🌈";
 
-  currentEmoji.innerHTML =
-    temperatureEmoji[weatherDescription.innerText] || fallbackEmoji;
+  currentEmoji.innerHTML = getEmoji(weatherDescription.innerText);
 
   // set background
 
@@ -221,6 +228,28 @@ function showWeather(response) {
   toFahrenheit(temperatureInCelsius);
 }
 
+// hourly forecast
+
+function displayForecast(response) {
+  let forecastElement = document.getElementById("hour-forecast");
+  // forecastElement.innerHTML = null;
+  let forecast = response.data.list[1];
+  console.log(forecast);
+  let emoji = getEmoji(forecast.weather[0].description);
+
+  forecastElement.innerHTML += `
+      <div class="col-2 hour">
+        <p id="hour"><strong>${formatHours(forecast.dt * 1000)}</strong></p>
+        <p class="small-emoji">${emoji}</p>
+        <p>${Math.round(forecast.main.temp_max)}° | ${Math.round(
+    forecast.main.temp_min
+  )}°</p>
+      </div>
+    `;
+}
+
+// current temp and forecast
+
 function showCurrent(response) {
   const apiKey = "e58056dbe2936b35eaec505d63e7a608";
   let searchInput = document.querySelector("#search-bar");
@@ -229,9 +258,14 @@ function showCurrent(response) {
   let searchedCity = currentCity.innerText;
 
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}&units=metric`;
-  console.log(apiUrl);
-
   axios.get(apiUrl).then(showWeather);
+
+  // get hour forecast
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchedCity}&appid=${apiKey}&units=metric`;
+
+  console.log(`THIS IS THE API URL ${apiUrl}`);
+
+  axios.get(apiUrl).then(displayForecast);
 }
 
 // Celsius to Fahrenheit
