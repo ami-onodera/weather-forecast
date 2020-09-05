@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Kalam:wght@300;400;700&display=swap");
 
+body {
+  background-color: #bebdce;
+}
+
 h1 {
   font-size: 70px;
   font-family: "Kalam";
@@ -82,8 +86,8 @@ h1 {
   margin-left: 20%;
   margin-bottom: 5px;
   background-color: #8b87b8;
+  border: 1px solid #353160;
   padding: 5px 15px;
-  border: none;
   border-radius: 5px;
   color: white;
 }

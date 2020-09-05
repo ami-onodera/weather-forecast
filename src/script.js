@@ -266,11 +266,13 @@ function displayForecast(response) {
       <div class="col-2 ml-1 md-1 hour">
         <p id="hour"><strong>${formatHours(forecast.dt * 1000)}</strong></p>
         <p class="small-emoji">${emoji}</p>
-        <p>${Math.round(forecast.main.temp_max)}° | ${Math.round(
+        <p>${Math.ceil(forecast.main.temp_max)}° | ${Math.floor(
       forecast.main.temp_min
     )}°</p>
       </div>
     `;
+    console.log(forecast.main.temp_max);
+    console.log(forecast.main.temp_min);
   }
 }
 
