@@ -40,15 +40,18 @@ function formatHours(timestamp) {
   // showHour.innerHTML = `${hourNow}:${minutesNow}`;
   return `${hourNow}:${minutesNow}`;
 }
-
 // Get current info by default
 
 function retrievePosition(position) {
   const apiKey = "e58056dbe2936b35eaec505d63e7a608";
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}&units=metric`;
-  axios.get(url).then(showWeather);
+  let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(weatherApiUrl).then(showWeather);
+
+  // get hourly forecast
+  let forecastApiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(forecastApiUrl).then(displayForecast);
 }
 
 navigator.geolocation.getCurrentPosition(retrievePosition);
@@ -255,12 +258,12 @@ function displayForecast(response) {
 
   let forecast = null;
 
-  for (let index = 0; index < 6; index++) {
+  for (let index = 0; index < 5; index++) {
     forecast = response.data.list[index];
     let emoji = getEmoji(forecast.weather[0].description);
 
     forecastElement.innerHTML += `
-      <div class="col-2 hour">
+      <div class="col-2 ml-1 md-1 hour">
         <p id="hour"><strong>${formatHours(forecast.dt * 1000)}</strong></p>
         <p class="small-emoji">${emoji}</p>
         <p>${Math.round(forecast.main.temp_max)}° | ${Math.round(
@@ -273,7 +276,7 @@ function displayForecast(response) {
 
 // current temp and forecast
 
-function showCurrent(response) {
+function showCurrent() {
   const apiKey = "e58056dbe2936b35eaec505d63e7a608";
   let searchInput = document.querySelector("#search-bar");
   let currentCity = document.querySelector("#current-city");
