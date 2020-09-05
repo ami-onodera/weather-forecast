@@ -27,10 +27,9 @@ showDate.innerHTML = `${weekDay} ${hourNow}:${minutesNow}`;
 // get hour for hourly forecast
 
 function formatHours(timestamp) {
-  let weekDay = days[now.getDay()];
-  let hourNow = now.getHours();
-
-  let minutesNow = now.getMinutes();
+  let date = new Date(timestamp);
+  let hourNow = date.getHours();
+  let minutesNow = date.getMinutes();
 
   if (minutesNow < 10) {
     minutesNow = "0" + minutesNow;
@@ -230,22 +229,46 @@ function showWeather(response) {
 
 // hourly forecast
 
+// function displayForecast(response) {
+//   let forecastElement = document.getElementById("hour-forecast");
+//   let forecast = response.data.list[0];
+//   let emoji = getEmoji(forecast.weather[0].description);
+
+//   console.log(forecast);
+
+//   forecastElement.innerHTML += `
+//       <div class="col-2 hour">
+//         <p id="hour"><strong>${formatHours(forecast.dt * 1000)}</strong></p>
+//         <p class="small-emoji">${emoji}</p>
+//         <p>${Math.round(forecast.main.temp_max)}° | ${Math.round(
+//     forecast.main.temp_min
+//   )}°</p>
+//       </div>
+//     `;
+// }
+
 function displayForecast(response) {
   let forecastElement = document.getElementById("hour-forecast");
-  // forecastElement.innerHTML = null;
-  let forecast = response.data.list[1];
-  console.log(forecast);
-  let emoji = getEmoji(forecast.weather[0].description);
+  forecastElement.innerHTML = null;
 
-  forecastElement.innerHTML += `
+  console.log(response);
+
+  let forecast = null;
+
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.list[index];
+    let emoji = getEmoji(forecast.weather[0].description);
+
+    forecastElement.innerHTML += `
       <div class="col-2 hour">
         <p id="hour"><strong>${formatHours(forecast.dt * 1000)}</strong></p>
         <p class="small-emoji">${emoji}</p>
         <p>${Math.round(forecast.main.temp_max)}° | ${Math.round(
-    forecast.main.temp_min
-  )}°</p>
+      forecast.main.temp_min
+    )}°</p>
       </div>
     `;
+  }
 }
 
 // current temp and forecast
