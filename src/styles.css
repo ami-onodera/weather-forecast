@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Kalam:wght@300;400;700&display=swap");
+
 h1 {
   font-size: 70px;
+  font-family: "Kalam";
 }
 
 .outer-container {
@@ -15,6 +18,7 @@ h1 {
   /* background-position: right top; */
   background-position: center;
   background-size: contain, cover;
+  font-family: "Kalam";
 }
 
 .left-side {
@@ -114,5 +118,24 @@ h1 {
 
 .celsius-fahrenheit a {
   text-decoration: none;
+  color: #008ce2;
+}
+
+.byAmi {
+  text-align: center;
+  color: #403d56;
+  font-family: Caveat;
+  font-weight: 400;
+  font-size: 22px;
+}
+
+.byAmi a {
+  font-weight: 700;
+  text-decoration: none;
+  color: #403d56;
+  cursor: pointer;
+}
+
+.byAmi a:hover {
   color: #008ce2;
 }
