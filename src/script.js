@@ -86,12 +86,14 @@ function getEmoji(temperature) {
     "shower rain": "🌧",
     rain: "⛈",
     "light rain": "🌧",
+    "moderate rain": "🌧",
     thunderstorm: "🌩",
     snow: "❄️",
     mist: "🌫",
     haze: "🌨",
     tornado: "🌪",
     fog: "🌫",
+    smoke: "🌫",
   };
   const fallbackEmoji = "🌈";
 
@@ -128,24 +130,6 @@ function showWeather(response) {
   weatherDescription.innerHTML = `${description}`;
 
   let currentEmoji = document.querySelector("#temp-emoji");
-
-  const temperatureEmoji = {
-    "clear sky": "☀️",
-    "few clouds": "🌤",
-    "scattered clouds": "🌥",
-    "broken clouds": "☁️",
-    "overcast clouds": "☁️",
-    "shower rain": "🌧",
-    rain: "⛈",
-    "light rain": "🌧",
-    thunderstorm: "🌩",
-    snow: "❄️",
-    mist: "🌫",
-    haze: "🌨",
-    tornado: "🌪",
-    fog: "🌫",
-  };
-  const fallbackEmoji = "🌈";
 
   currentEmoji.innerHTML = getEmoji(weatherDescription.innerText);
 
@@ -188,6 +172,11 @@ function showWeather(response) {
       "style",
       "background-image: url(img/rain2.png)"
     );
+  } else if (weatherDescription.innerText === "moderate rain") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/rain.png)"
+    );
   } else if (weatherDescription.innerText === "thunderstorm") {
     currentBackground.setAttribute(
       "style",
@@ -213,6 +202,11 @@ function showWeather(response) {
       "style",
       "background-image: url(img/wind2.svg)"
     );
+  } else if (weatherDescription.innerText === "smoke") {
+    currentBackground.setAttribute(
+      "style",
+      "background-image: url(img/wind2.svg)"
+    );
   } else if (weatherDescription.innerText === "overcast clouds") {
     currentBackground.setAttribute(
       "style",
@@ -231,24 +225,6 @@ function showWeather(response) {
 }
 
 // hourly forecast
-
-// function displayForecast(response) {
-//   let forecastElement = document.getElementById("hour-forecast");
-//   let forecast = response.data.list[0];
-//   let emoji = getEmoji(forecast.weather[0].description);
-
-//   console.log(forecast);
-
-//   forecastElement.innerHTML += `
-//       <div class="col-2 hour">
-//         <p id="hour"><strong>${formatHours(forecast.dt * 1000)}</strong></p>
-//         <p class="small-emoji">${emoji}</p>
-//         <p>${Math.round(forecast.main.temp_max)}° | ${Math.round(
-//     forecast.main.temp_min
-//   )}°</p>
-//       </div>
-//     `;
-// }
 
 function displayForecast(response) {
   let forecastElement = document.getElementById("hour-forecast");
@@ -271,8 +247,6 @@ function displayForecast(response) {
     )}°</p>
       </div>
     `;
-    console.log(forecast.main.temp_max);
-    console.log(forecast.main.temp_min);
   }
 }
 
@@ -291,7 +265,7 @@ function showCurrent() {
   // get hour forecast
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchedCity}&appid=${apiKey}&units=metric`;
 
-  console.log(`THIS IS THE API URL ${apiUrl}`);
+  // console.log(`THIS IS THE API URL ${apiUrl}`);
 
   axios.get(apiUrl).then(displayForecast);
 }
